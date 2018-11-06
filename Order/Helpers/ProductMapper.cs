@@ -18,6 +18,7 @@ namespace Order_Api.Helpers
                 Amount = product.Amount,
                 Price = product.Price,
                 ProductIsInStock = product.ProductIsInStock,
+                ID = product.ID,
             };
         }
         public Product CreateProductFromProductDTO(ProductDTO productDTO)

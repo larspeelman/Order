@@ -26,8 +26,6 @@ namespace Order_Domain.Orders
             {
                 priceInTotal = (item.Amount * item.Price);
                 priceInTotal += priceInTotal;
-
-
             }
             
             return priceInTotal;

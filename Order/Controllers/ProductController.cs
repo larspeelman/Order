@@ -71,8 +71,7 @@ namespace Order_Api.Controllers
             }
             else
             {
-                _productService.UpdateProduct(id, _productMapper.CreateProductFromProductDTO(newProduct));
-                return _productMapper.CreateProductDTOFromProduct(productToCheck);
+                return _productMapper.CreateProductDTOFromProduct(_productService.UpdateProduct(id, _productMapper.CreateProductFromProductDTO(newProduct)));
             }
         }
 

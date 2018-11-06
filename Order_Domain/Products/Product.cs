@@ -10,7 +10,7 @@ namespace Order_Domain.Products
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Amount { get; set; }
-        public string ID { get; }
+        public string ID { get; set; }
         public bool ProductIsInStock => CheckIfProductIsInStock();
 
         public Product()
@@ -22,7 +22,7 @@ namespace Order_Domain.Products
 
         private string CreateProductID()
         {
-            return (ProductDB.DBProducts.Count + 1).ToString();
+            return (ProductDB.DBProducts.Count).ToString();
         }
         
         private bool CheckIfProductIsInStock()

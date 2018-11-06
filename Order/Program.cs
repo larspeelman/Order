@@ -50,7 +50,8 @@ namespace Order
               Name = "iphone",
               Description = "gsm",
               Price = 200.00M,
-              Amount = 10
+              Amount = 10,
+              ID = "1"
             });
         }
     }

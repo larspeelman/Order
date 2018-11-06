@@ -11,5 +11,6 @@ namespace Order_Services.Users
         User CreateNewCustomer(User customerToCreate);
         Task<User> Authenticate(string email, string password);
         IEnumerable<User> GetAllCustomers();
+        bool CheckIfCustomerIsValid(string id);
     }
 }

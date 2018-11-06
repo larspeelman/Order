@@ -1,8 +1,10 @@
-﻿using Order_Api.Exceptions;
+﻿using Microsoft.AspNetCore.Http;
+using Order_Api.Exceptions;
 using Order_Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +50,20 @@ namespace Order_Services.Users
 
             return _userRepository.GetAllCustomers();
         }
+
+        public bool CheckIfCustomerIsValid(string id)
+        {
+            var customerInDB = _userRepository.GetAllCustomers().SingleOrDefault(x => x.ID == id);
+            if (customerInDB == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
 
 
     }

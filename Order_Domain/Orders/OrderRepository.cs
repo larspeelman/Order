@@ -6,5 +6,9 @@ namespace Order_Domain.Orders
 {
     public class OrderRepository : IOrderRepository
     {
+        public void AddOrderToDB(OrderClass orderedProducts)
+        {
+            OrderDB.DBOfOrder.Add(orderedProducts);
+        }
     }
 }

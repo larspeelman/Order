@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Order_Domain.Products;
 using Order_Domain.Users;
 
 namespace Order
@@ -16,6 +17,7 @@ namespace Order
         public static void Main(string[] args)
         {
             InitUsers();
+            InitItems();
             CreateWebHostBuilder(args).Build().Run();
             
         }
@@ -38,6 +40,17 @@ namespace Order
                 PhoneNumber="22222",
                 RoleOfUser = Roles.Role.Admin,
                 Password ="test123",
+            });
+        }
+
+        private static void InitItems()
+        {
+            ProductDB.DBProducts.Add(new Product()
+            {
+              Name = "iphone",
+              Description = "gsm",
+              Price = 200.00M,
+              Amount = 10
             });
         }
     }

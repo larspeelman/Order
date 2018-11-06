@@ -6,6 +6,6 @@ namespace Order_Domain.Orders
 {
     public static class OrderDB
     {
-        public static List<Order> DBOfOrder = new List<Order>();
+        public static List<OrderClass> DBOfOrder = new List<OrderClass>();
     }
 }

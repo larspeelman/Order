@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Order_Domain.Orders
 {
-    public interface IOrderRepository
+    public interface IOrderService
     {
-        void AddOrderToDB(OrderClass orderedProducts);
+        OrderClass CreateOrder(OrderClass OrderedProducts);
     }
 }

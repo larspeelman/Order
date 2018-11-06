@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Order_Domain.Orders;
 using Order_Domain.Products;
 
 namespace Order_Services.Products
@@ -30,6 +31,33 @@ namespace Order_Services.Products
         {
             _productRepository.UpdateProduct(productToCheck);
             return productToCheck;
+        }
+
+        public Product GetProduct(string id)
+        {
+            return _productRepository.GetAllProductsFromDB().SingleOrDefault(x => x.ID == id);
+        }
+
+
+        public void UpdateStock(List<ItemGroup> OrderedProducts)
+        {
+            foreach (var item in OrderedProducts)
+            {
+                var productInDB = _productRepository.GetAllProductsFromDB().SingleOrDefault(x => x.ID == item.ItemId);
+                if (productInDB.Amount <= 0)
+                {
+                    productInDB.Amount = 0;
+                }
+                else if (productInDB.Amount < item.Amount)
+                {
+                    productInDB.Amount = 0;
+                }
+                else
+                {
+                    productInDB.Amount = productInDB.Amount - item.Amount;
+                }
+
+            }
         }
     }
 }

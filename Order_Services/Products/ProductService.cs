@@ -22,7 +22,7 @@ namespace Order_Services.Products
             return product;
         }
 
-        public IEnumerable<Product> GetAllProduct()
+        public IEnumerable<Product> GetAllProducts()
         {
             return _productRepository.GetAllProductsFromDB();
         }

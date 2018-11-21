@@ -7,17 +7,17 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Order_Api.DTO;
-using Order_Domain.Products;
+using Order_Domain.items;
 using System.Collections.Generic;
 
 namespace Order.IntegrationTests
 {
-    public class ProductIntegrationtests
+    public class itemIntegrationtests
     {
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public ProductIntegrationtests()
+        public itemIntegrationtests()
         {
             // Arrange
             _server = new TestServer(new WebHostBuilder()
@@ -28,15 +28,15 @@ namespace Order.IntegrationTests
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-            ProductDB.DBProducts.Clear();
+            itemDB.DBitems.Clear();
             
 
         }
 
         [Fact]
-        public async Task AddNewProduct_WhengivenANewProduct_ThenProductIsAddedToDatabase()
+        public async Task AddNewitem_WhengivenANewitem_ThenitemIsAddedToDatabase()
         {
-            var productone = (new Items()
+            var itemone = (new Items()
             {
                 Name = "iphone8",
                 Description = "gsm",
@@ -44,12 +44,12 @@ namespace Order.IntegrationTests
                 Amount = 100,
                 ItemID = "10"
             });
-            ProductDB.DBProducts.Add(productone);
+            itemDB.DBitems.Add(itemone);
 
-            var content = JsonConvert.SerializeObject(productone);
+            var content = JsonConvert.SerializeObject(itemone);
             var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
 
-            var response = await _client.PostAsync("/api/product", stringContent);
+            var response = await _client.PostAsync("/api/item", stringContent);
 
             Assert.Collection(List, );
         }

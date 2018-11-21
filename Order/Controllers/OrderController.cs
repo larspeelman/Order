@@ -42,21 +42,21 @@ namespace Order_Api.Controllers
         // POST: api/Order
         [Authorize ( Roles = "Member")]
         [HttpPost]
-        public ActionResult<OrderDTO> CreateOrder([FromBody] OrderDTOWithoutTotalPrice OrderedProducts)
+        public ActionResult<OrderDTO> CreateOrder([FromBody] OrderDTOWithoutTotalPrice Ordereditems)
         {
-            if (OrderedProducts == null)
+            if (Ordereditems == null)
             {
                 return BadRequest("No items to order");
             }
             else
             {
-                return Ok(_ordermapper.CreateOrderDTOFromOrder(_orderService.CreateOrder(_ordermapper.CreateOrderFromOrderDTO(OrderedProducts))));
+                return Ok(_ordermapper.CreateOrderDTOFromOrder(_orderService.CreateOrder(_ordermapper.CreateOrderFromOrderDTO(Ordereditems))));
             }
         }
 
         // PUT: api/Order/5
         [HttpPut("{id}")]
-        public void put([FromBody] List<ItemGroupDTO> productsToOrder)
+        public void put([FromBody] List<ItemGroupDTO> itemsToOrder)
         {
 
         }

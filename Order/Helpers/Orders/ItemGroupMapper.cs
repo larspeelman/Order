@@ -14,7 +14,7 @@ namespace Order_Api.Helpers
         {
             return new ItemGroupDTO
             {
-                ProductID = itemGroup.ItemId,
+                itemID = itemGroup.ItemId,
                 Amount = itemGroup.Amount,
                 ShippingDate = itemGroup.ShippingDate
             };
@@ -24,7 +24,7 @@ namespace Order_Api.Helpers
         {
             return new ItemGroup
             {
-                ItemId = itemGroupDTO.ProductID,
+                ItemId = itemGroupDTO.itemID,
                 Amount = itemGroupDTO.Amount,
             };
         }

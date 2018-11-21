@@ -6,6 +6,6 @@ namespace Order_Domain.Orders
 {
     public interface IOrderService
     {
-        OrderClass CreateOrder(OrderClass OrderedProducts);
+        OrderClass CreateOrder(OrderClass Ordereditems);
     }
 }

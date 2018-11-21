@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Order_Services.Exceptions
 {
-    class ProductException : Exception
+    class itemException : Exception
     {
-        public ProductException(string message) : base(message)
+        public itemException(string message) : base(message)
         {
 
         }

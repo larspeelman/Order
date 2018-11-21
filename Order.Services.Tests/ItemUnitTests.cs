@@ -1,8 +1,8 @@
 using NSubstitute;
 using Order_Domain.Orders;
-using Order_Domain.Products;
+using Order_Domain.items;
 using Order_Domain.Users;
-using Order_Services.Products;
+using Order_Services.items;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -11,7 +11,7 @@ namespace Order.Services.Tests
 {
     public class ItemUnitTests
     {
-        Items testProduct = new Items()
+        Items testitem = new Items()
         {
             Amount = 1,
             Description = "test",
@@ -21,26 +21,26 @@ namespace Order.Services.Tests
         };
 
         [Fact]
-        public void GivenAddNewProduct_WhenAddingAProduct_ThenReturnProduct()
+        public void GivenAddNewitem_WhenAddingAitem_ThenReturnitem()
         {
             
-            IProductRepository productSTUB = Substitute.For<IProductRepository>();
+            IitemRepository itemSTUB = Substitute.For<IitemRepository>();
           
-            ProductService productService = new ProductService(productSTUB);
-            var actual = productService.AddNewProduct(testProduct);
+            itemService itemService = new itemService(itemSTUB);
+            var actual = itemService.AddNewitemToDatabase(testitem);
 
             Assert.IsType<Items>(actual);
 
         }
 
         [Fact]
-        public void GivenUpdateProduct_WhenUpdatingAProduct_ThenReturnProduct()
+        public void GivenUpdateitem_WhenUpdatingAitem_ThenReturnitem()
         {
             
-            IProductRepository productSTUB = Substitute.For<IProductRepository>();
+            IitemRepository itemSTUB = Substitute.For<IitemRepository>();
           
-            ProductService productService = new ProductService(productSTUB);
-            var actual = productService.AddNewProduct(testProduct);
+            itemService itemService = new itemService(itemSTUB);
+            var actual = itemService.AddNewitemToDatabase(testitem);
 
             Assert.IsType<Items>(actual);
 

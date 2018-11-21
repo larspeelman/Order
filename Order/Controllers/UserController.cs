@@ -43,7 +43,7 @@ namespace Order_Api.Controllers
         [HttpGet("{id}")]
         public UserDTO Get(int id)
         {
-            var checkUserId = _userservice.GetAllCustomers().SingleOrDefault(x => x.ID == id.ToString());
+            var checkUserId = _userservice.GetAllCustomers().SingleOrDefault(x => x.UserID == id.ToString());
             if (checkUserId == null)
             {
                 throw new UserException("No user was found with this ID");
@@ -66,16 +66,5 @@ namespace Order_Api.Controllers
 
         }
 
-        // PUT: api/Customer/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

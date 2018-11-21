@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Order_Domain.Products
+namespace Order_Domain.items
 {
     public enum ItemInStock
     {

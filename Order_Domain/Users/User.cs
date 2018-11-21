@@ -13,7 +13,7 @@ namespace Order_Domain.Users
         public string PostalCode { get; set; }
         public string Number { get; set; }
         public string PhoneNumber { get; set; }
-        public string ID { get; }
+        public string UserID { get; }
         public string Password { get; set; }
         public int RoleOfUserID { get; set; }
         public RolesEnum RoleOfUser {get; set;}

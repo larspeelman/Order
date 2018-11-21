@@ -16,8 +16,8 @@ using Order_Api.Helpers;
 using Order_Domain.Users;
 using Microsoft.AspNetCore.Authentication;
 using Order_Api.Helper;
-using Order_Services.Products;
-using Order_Domain.Products;
+using Order_Services.items;
+using Order_Domain.items;
 using Order_Domain.Orders;
 using Microsoft.EntityFrameworkCore;
 using Order.Data;
@@ -44,11 +44,12 @@ namespace Order
             services.AddAuthentication("BasicAuthentication")
                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             services.AddCors();
-            services.AddSingleton<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IitemService, itemService>();
+
             services.AddSingleton<IUserMapper, UserMapper>();
-            services.AddSingleton<IOrderService, OrderService>();
-            services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IProductMapper, ProductMapper>();
+            services.AddSingleton<IitemMapper, ItemMapper>();
             services.AddSingleton<IItemGroupMapper, ItemGroupMapper>();
             services.AddSingleton<IOrderMapper, OrderMapper>();
 

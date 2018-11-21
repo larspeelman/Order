@@ -7,7 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Order_Domain.Products;
+using Order_Domain.items;
 using Order_Domain.Users;
 
 namespace Order
@@ -45,7 +45,7 @@ namespace Order
 
         private static void InitItems()
         {
-            ProductDB.DBProducts.Add(new Items()
+            itemDB.DBitems.Add(new Items()
             {
               Name = "iphone",
               Description = "gsm",

@@ -1,6 +1,7 @@
-﻿using Order_Api.Exceptions;
-using Order_Domain.Products;
-using Order_Services.Products;
+﻿using Order.Data;
+using Order_Api.Exceptions;
+using Order_Domain.items;
+using Order_Services.items;
 using Order_Services.Users;
 using System;
 using System.Collections.Generic;
@@ -11,58 +12,47 @@ namespace Order_Domain.Orders
 {
     public class OrderService : IOrderService
     {
-        private readonly IOrderRepository _orderRepository;
-        private readonly IProductService _productService;
+        private readonly OrderDbContext _context;
+        private readonly IitemService _itemService;
         private readonly IUserService _userService;
 
-        public OrderService(IOrderRepository orderRepository, IProductService productService, IUserService userService)
-        {
-            _orderRepository = orderRepository;
-            _productService = productService;
-            _userService = userService;
-        }
 
-        public OrderClass CreateOrder(OrderClass OrderedProducts)
+
+        public OrderClass CreateOrder(OrderClass orderedItems)
         {
-            var CustomerToCheck = _userService.CheckIfCustomerIsValid(OrderedProducts.CustomerID);
+            var CustomerToCheck = _userService.CheckIfCustomerIsValid(orderedItems.CustomerID);
             if (CustomerToCheck != true)
             {
                 throw new UserException("No User Found");
             }
-            AddPriceToItemGroup(OrderedProducts.ItemGroups);
-            CalculateShippingDate(OrderedProducts.ItemGroups);
-            _orderRepository.AddOrderToDB(OrderedProducts);
-            _productService.UpdateStock(OrderedProducts.ItemGroups);
-            return OrderedProducts;
+            AddPriceToItemGroup(orderedItems.ItemGroups);
+            GetShippingDate(orderedItems.ItemGroups);
+            _context.Orders.Add(orderedItems);
+            _itemService.UpdateStock(orderedItems.ItemGroups);
+            return orderedItems;
         }
 
-        private void AddPriceToItemGroup(List<ItemGroup> OrderedProducts)
+        private void AddPriceToItemGroup(List<ItemGroup> Ordereditems)
         {
-            List<ItemGroup> newListOfProducts = new List<ItemGroup>();
-            foreach (var item in OrderedProducts)
+            List<ItemGroup> newListOfitems = new List<ItemGroup>();
+            foreach (var item in Ordereditems)
             {
-                var productInDB = _productService.GetProduct(item.ItemId);
-                item.Price = productInDB.Price;
-                newListOfProducts.Add(item);
+                var itemInDB = _itemService.Getitem(item.ItemId);
+                item.Price = itemInDB.Price;
+                newListOfitems.Add(item);
             }
         }
 
-        private void CalculateShippingDate(List<ItemGroup> OrderedProducts)
+        private void GetShippingDate(List<ItemGroup> itemGroup)
         {
-            foreach (var item in OrderedProducts)
+
+            foreach (var item in itemGroup)
             {
-                var productInDB = _productService.GetProduct(item.ItemId);
-                if (productInDB.ProductIsInStock == false || productInDB.Amount - item.Amount <= 0)
-                {
-                    item.ShippingDate = DateTime.Now.AddDays(7);
-                }
-                else
-                {
-                    item.ShippingDate = DateTime.Now.AddDays(1);
-                }
+                var itemInDB = _itemService.Getitem(item.ItemId);
+                item.CalculateShippingDate(itemInDB);
             }
         }
 
-        
+
     }
 }

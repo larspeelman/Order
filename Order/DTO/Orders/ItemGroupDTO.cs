@@ -1,4 +1,4 @@
-﻿using Order_Domain.Products;
+﻿using Order_Domain.items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Order_Api.DTO
     public class ItemGroupDTO
     {
         
-        public string ProductID { get; set; }
+        public string itemID { get; set; }
         public int Amount { get; set; }
         public DateTime ShippingDate { get; set; }
 

@@ -36,13 +36,13 @@ namespace Order.IntegrationTests
         [Fact]
         public async Task AddNewProduct_WhengivenANewProduct_ThenProductIsAddedToDatabase()
         {
-            var productone = (new Product()
+            var productone = (new Items()
             {
                 Name = "iphone8",
                 Description = "gsm",
                 Price = 200.00M,
                 Amount = 100,
-                ID = "10"
+                ItemID = "10"
             });
             ProductDB.DBProducts.Add(productone);
 
@@ -51,7 +51,7 @@ namespace Order.IntegrationTests
 
             var response = await _client.PostAsync("/api/product", stringContent);
 
-            Assert.Equal(1, ProductDB.DBProducts.Count);
+            Assert.Collection(List, );
         }
     }
 }

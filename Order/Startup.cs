@@ -19,6 +19,8 @@ using Order_Api.Helper;
 using Order_Services.Products;
 using Order_Domain.Products;
 using Order_Domain.Orders;
+using Microsoft.EntityFrameworkCore;
+using Order.Data;
 
 namespace Order
 {
@@ -44,15 +46,15 @@ namespace Order
             services.AddCors();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IUserMapper, UserMapper>();
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IOrderService, OrderService>();
             services.AddSingleton<IProductService, ProductService>();
-            services.AddSingleton<IProductRepository, ProductRepository>();
             services.AddSingleton<IProductMapper, ProductMapper>();
             services.AddSingleton<IItemGroupMapper, ItemGroupMapper>();
             services.AddSingleton<IOrderMapper, OrderMapper>();
-            services.AddSingleton<IOrderRepository, OrderRepository>();
+
+            services.AddDbContext<OrderDbContext>(options =>
+                options
+                .UseSqlServer(Configuration.GetConnectionString("OrderDb")));
 
         }
 

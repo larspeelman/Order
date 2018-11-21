@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Order_Api.DTO;
@@ -11,6 +12,7 @@ using Order_Services.Users;
 
 namespace Order_Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
@@ -38,6 +40,7 @@ namespace Order_Api.Controllers
 
 
         // POST: api/Order
+        [Authorize ( Roles = "Member")]
         [HttpPost]
         public ActionResult<OrderDTO> CreateOrder([FromBody] OrderDTOWithoutTotalPrice OrderedProducts)
         {

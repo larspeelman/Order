@@ -64,7 +64,7 @@ namespace Order_Api.Controllers
         [HttpPut("{id}")]
         public ActionResult<ProductDTO> UpdateProduct(int id, [FromBody] ProductDTO newProduct)
         {
-            var productToCheck = _productService.GetAllProducts().SingleOrDefault(x => x.ID == id.ToString());
+            var productToCheck = _productService.GetAllProducts().SingleOrDefault(x => x.ItemID == id.ToString());
             if (productToCheck == null)
             {
                 return BadRequest("Product doesn't exist");

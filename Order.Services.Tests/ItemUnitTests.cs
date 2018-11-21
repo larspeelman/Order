@@ -11,11 +11,11 @@ namespace Order.Services.Tests
 {
     public class ItemUnitTests
     {
-        Product testProduct = new Product()
+        Items testProduct = new Items()
         {
             Amount = 1,
             Description = "test",
-            ID = "1",
+            ItemID = "1",
             Name = "test",
             Price = 200
         };
@@ -29,7 +29,7 @@ namespace Order.Services.Tests
             ProductService productService = new ProductService(productSTUB);
             var actual = productService.AddNewProduct(testProduct);
 
-            Assert.IsType<Product>(actual);
+            Assert.IsType<Items>(actual);
 
         }
 
@@ -42,7 +42,7 @@ namespace Order.Services.Tests
             ProductService productService = new ProductService(productSTUB);
             var actual = productService.AddNewProduct(testProduct);
 
-            Assert.IsType<Product>(actual);
+            Assert.IsType<Items>(actual);
 
         }
 

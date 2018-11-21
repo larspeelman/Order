@@ -14,10 +14,6 @@ namespace Order_Domain.Orders
         public decimal TotalPrice => CalculatetotalPrice();
         public string OrderID { get; set; }
 
-        public OrderClass()
-        {
-            OrderID = CreateOrderID();
-        }
 
         private decimal CalculatetotalPrice()
         {
@@ -31,9 +27,6 @@ namespace Order_Domain.Orders
             return priceInTotal;
         }
 
-        private string CreateOrderID()
-        {
-            return (OrderDB.DBOfOrder.Count + 1).ToString();
-        }
+
     }
 }

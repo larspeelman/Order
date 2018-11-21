@@ -8,10 +8,10 @@ namespace Order_Services.Products
 {
     public interface IProductService
     {
-        Product AddNewProduct(Product product);
-        IEnumerable<Product> GetAllProducts();
-        Product UpdateProduct(int id, Product productToCheck);
-        Product GetProduct(string id);
+        Items AddNewProduct(Items product);
+        IEnumerable<Items> GetAllProducts();
+        Items UpdateProduct(int id, Items productToCheck);
+        Items GetProduct(string id);
         void UpdateStock(List<ItemGroup> OrderedProducts);
     }
 }

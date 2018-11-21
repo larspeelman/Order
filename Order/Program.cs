@@ -38,20 +38,20 @@ namespace Order
                 PostalCode = "2050",
                 Number ="53153",
                 PhoneNumber="22222",
-                RoleOfUser = Roles.Role.Admin,
+                RoleOfUser = RolesEnum.Role.Admin,
                 Password ="test123",
             });
         }
 
         private static void InitItems()
         {
-            ProductDB.DBProducts.Add(new Product()
+            ProductDB.DBProducts.Add(new Items()
             {
               Name = "iphone",
               Description = "gsm",
               Price = 200.00M,
               Amount = 10,
-              ID = "1"
+              ItemID = "1"
             });
         }
     }

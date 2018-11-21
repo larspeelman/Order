@@ -6,11 +6,8 @@ namespace Order_Domain.Users
 {
     public class Roles
     {
-        public enum Role
-        {
-            Admin,
-            Customer,
-        }
+        public int RolesId { get; set; }
+        public RolesEnum Role { get; set; }
+        public User User { get; set; }
     }
-
 }

@@ -39,7 +39,7 @@ namespace Order_Services.Users
             }
             else
             {
-                customerToCreate.RoleOfUser = Roles.Role.Customer;
+                customerToCreate.RoleOfUser = RolesEnum.Role.Customer;
                 _userRepository.AddCustomerToDB(customerToCreate);
                 return customerToCreate;
             }

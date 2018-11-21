@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Order_Domain.Products
 {
-    public static class ProductDB
+    public enum ItemInStock
     {
-        public static List<Product> DBProducts = new List<Product>();
+        OutOfStock = 0,
+        InStock = 1
     }
 }

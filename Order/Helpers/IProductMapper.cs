@@ -9,7 +9,7 @@ namespace Order_Api.Helpers
 {
     public interface IProductMapper
     {
-        ProductDTO CreateProductDTOFromProduct(Product product);
-        Product CreateProductFromProductDTO(ProductDTO productDTO);
+        ProductDTO CreateProductDTOFromProduct(Items product);
+        Items CreateProductFromProductDTO(ProductDTO productDTO);
     }
 }

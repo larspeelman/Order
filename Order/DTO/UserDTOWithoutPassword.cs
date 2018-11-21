@@ -14,6 +14,6 @@ namespace Order_Api.DTO
         public string Adress { get; set; }
         public string PhoneNumber { get; set; }
         public string ID { get; set; }
-        public Roles.Role RoleOfUser { get; set; }
+        public RolesEnum.Role RoleOfUser { get; set; }
     }
 }

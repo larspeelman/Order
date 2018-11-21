@@ -9,7 +9,7 @@ namespace Order_Api.Helpers
 {
     public class ProductMapper : IProductMapper
     {
-        public ProductDTO CreateProductDTOFromProduct(Product product)
+        public ProductDTO CreateProductDTOFromProduct(Items product)
         {
             return new ProductDTO
             {
@@ -18,12 +18,12 @@ namespace Order_Api.Helpers
                 Amount = product.Amount,
                 Price = product.Price,
                 ProductIsInStock = product.ProductIsInStock,
-                ID = product.ID,
+                ID = product.ItemID,
             };
         }
-        public Product CreateProductFromProductDTO(ProductDTO productDTO)
+        public Items CreateProductFromProductDTO(ProductDTO productDTO)
         {
-            return new Product
+            return new Items
             {
                 Name = productDTO.Name,
                 Description = productDTO.Description,

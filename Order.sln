@@ -15,15 +15,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order_Services", "Order_Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order_Domain", "Order_Domain\Order_Domain.csproj", "{4CBF3623-DACE-4787-AA4B-344AF2B20914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.IntegrationTests", "Order.IntegrationTests\Order.IntegrationTests.csproj", "{418EE03C-4512-4D57-89C0-D3FA5518B810}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.IntegrationTests", "Order.IntegrationTests\Order.IntegrationTests.csproj", "{418EE03C-4512-4D57-89C0-D3FA5518B810}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Domain.UnitTests", "Order.Domain.UnitTests\Order.Domain.UnitTests.csproj", "{65D047EB-F3EC-4E60-A23D-2DC43C62ED49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Domain.UnitTests", "Order.Domain.UnitTests\Order.Domain.UnitTests.csproj", "{65D047EB-F3EC-4E60-A23D-2DC43C62ED49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Services.Tests", "Order.Services.Tests\Order.Services.Tests.csproj", "{40020D27-23A7-44A3-8CAA-61FF1ED627F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Order.Services.Tests", "Order.Services.Tests\Order.Services.Tests.csproj", "{40020D27-23A7-44A3-8CAA-61FF1ED627F4}"
 	ProjectSection(ProjectDependencies) = postProject
 		{4CBF3623-DACE-4787-AA4B-344AF2B20914} = {4CBF3623-DACE-4787-AA4B-344AF2B20914}
 		{12E6C5BF-ADEA-453C-BBCF-6777EED7999A} = {12E6C5BF-ADEA-453C-BBCF-6777EED7999A}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Data", "Order.Data\Order.Data.csproj", "{70F45203-2665-4F38-B652-ACF6A45F92C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{40020D27-23A7-44A3-8CAA-61FF1ED627F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40020D27-23A7-44A3-8CAA-61FF1ED627F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40020D27-23A7-44A3-8CAA-61FF1ED627F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F45203-2665-4F38-B652-ACF6A45F92C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F45203-2665-4F38-B652-ACF6A45F92C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F45203-2665-4F38-B652-ACF6A45F92C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F45203-2665-4F38-B652-ACF6A45F92C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

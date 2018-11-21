@@ -16,24 +16,24 @@ namespace Order_Services.Products
             _productRepository = productRepository;
         }
 
-        public Product AddNewProduct(Product product)
+        public Items AddNewProduct(Items product)
         {
             _productRepository.AddNewProductToDB(product);
             return product;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Items> GetAllProducts()
         {
             return _productRepository.GetAllProductsFromDB();
         }
 
-        public Product UpdateProduct(int id, Product productToCheck)
+        public Items UpdateProduct(int id, Items productToCheck)
         {
             _productRepository.UpdateProduct(productToCheck);
             return productToCheck;
         }
 
-        public Product GetProduct(string id)
+        public Items GetProduct(string id)
         {
             return _productRepository.GetAllProductsFromDB().SingleOrDefault(x => x.ID == id);
         }

@@ -15,16 +15,9 @@ namespace Order_Domain.Users
         public string PhoneNumber { get; set; }
         public string ID { get; }
         public string Password { get; set; }
-        public Roles.Role RoleOfUser {get; set;}
+        public int RoleOfUserID { get; set; }
+        public RolesEnum RoleOfUser {get; set;}
 
-        public User()
-        {
-            ID = CreateCustomerID();
-        }
 
-        private string CreateCustomerID()
-        {
-            return (UserDB.DBUsers.Count + 1).ToString();
-        }
     }
 }

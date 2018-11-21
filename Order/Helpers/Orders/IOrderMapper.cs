@@ -1,4 +1,5 @@
 ﻿using Order_Api.DTO;
+using Order_Api.DTO.Orders;
 using Order_Domain.Orders;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Order_Api.Helpers
 {
     public interface IOrderMapper
     {
-        OrderDTO CreateOrderDTOFromOrder(OrderClass order);
-        OrderClass CreateOrderFromOrderDTO(OrderDTOWithoutTotalPrice orderDTO);
+        OrderDTO_Return CreateOrderDTOReturnFromOrder(OrderClass order);
+        OrderClass CreateOrderFromOrderDTOCreate(OrderDTO_Create orderDTO);
     }
 }

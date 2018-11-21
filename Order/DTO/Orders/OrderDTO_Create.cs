@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Order_Api.DTO
 {
-    public class OrderDTO
+    public class OrderDTO_Create
     {
         public string CustomerID { get; set; }
         public List<ItemGroupDTO> ItemGroupDTO { get; set; }

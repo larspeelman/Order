@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Order.Data\Order.Data.csproj" />
     <ProjectReference Include="..\Order_Domain\Order_Domain.csproj" />
   </ItemGroup>
 

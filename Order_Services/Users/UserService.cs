@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Order.Data;
 using Order_Api.Exceptions;
 using Order_Domain.Users;
 using System;
@@ -12,11 +13,11 @@ namespace Order_Services.Users
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
+        private readonly OrderDbContext _context;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(OrderDbContext context)
         {
-            _userRepository = userRepository;
+            _context = context;
         }
 
         public async Task<User> Authenticate(string email, string password)

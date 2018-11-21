@@ -23,7 +23,7 @@ namespace Order_Domain.Orders
             var CustomerToCheck = _userService.CheckIfCustomerIsValid(orderedItems.CustomerID);
             if (CustomerToCheck != true)
             {
-                throw new UserException("No User Found");
+                return null;
             }
             AddPriceToItemGroup(orderedItems.ItemGroups);
             GetShippingDate(orderedItems.ItemGroups);

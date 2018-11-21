@@ -1,4 +1,5 @@
 ﻿using Order_Api.DTO;
+using Order_Api.DTO.Orders;
 using Order_Domain.Orders;
 using System;
 using System.Collections.Generic;
@@ -16,22 +17,25 @@ namespace Order_Api.Helpers
             _itemGroupMapper = itemGroupMapper;
         }
 
-        public OrderDTO CreateOrderDTOFromOrder(OrderClass order)
+        public OrderDTO_Return CreateOrderDTOReturnFromOrder(OrderClass order)
         {
-            return new OrderDTO
+            return new OrderDTO_Return
             {
                 CustomerID = order.CustomerID,
                 TotalPrice = order.TotalPrice,
-                ItemGroupDTO = _itemGroupMapper.CreateItemGroupDTOFromItemGroupList(order.ItemGroups)
+                ItemGroups = _itemGroupMapper.CreateItemGroupDTOFromItemGroupList(order.ItemGroups),
+                OrderDate = order.OrderDate,
+                OrderID = order.OrderID
             };
         }
 
-        public OrderClass CreateOrderFromOrderDTO(OrderDTOWithoutTotalPrice orderDTO)
+        public OrderClass CreateOrderFromOrderDTOCreate(OrderDTO_Create orderDTO)
         {
             return new OrderClass
             {
                 CustomerID = orderDTO.CustomerID,
-                ItemGroups = _itemGroupMapper.CreateItemGroupFromItemGroupDTOList(orderDTO.ItemGroupDTO)
+                ItemGroups = _itemGroupMapper.CreateItemGroupFromItemGroupDTOList(orderDTO.ItemGroupDTO),
+
             };
         }
     }

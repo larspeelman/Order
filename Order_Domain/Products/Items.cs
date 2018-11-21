@@ -7,11 +7,11 @@ namespace Order_Domain.items
 {
     public class Items
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public decimal Price { get; private set; }
-        public int Amount { get; private set; }
-        public string ItemID { get; private set; }
+        public string Name { get;  set; }
+        public string Description { get;  set; }
+        public decimal Price { get;  set; }
+        public int Amount { get;  set; }
+        public int ItemID { get;  set; }
         public ItemGroup ItemGroup { get; set; }
         public int ItemIsInStockID => CheckIfitemIsInStock();
         public ItemInStock ItemInStock => SetIdToStringForITemInStock();

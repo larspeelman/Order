@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Order_Api.DTO;
+using Order_Api.DTO.Orders;
 using Order_Api.Helpers;
 using Order_Domain.Orders;
 using Order_Services.Users;
@@ -42,15 +43,16 @@ namespace Order_Api.Controllers
         // POST: api/Order
         [Authorize ( Roles = "Member")]
         [HttpPost]
-        public ActionResult<OrderDTO> CreateOrder([FromBody] OrderDTOWithoutTotalPrice Ordereditems)
+        public ActionResult<OrderDTO_Return> CreateOrder([FromBody] OrderDTO_Create orderedItems)
         {
-            if (Ordereditems == null)
+            var result = _orderService.CreateOrder(_ordermapper.CreateOrderFromOrderDTOCreate(orderedItems));
+            if (result == null)
             {
                 return BadRequest("No items to order");
             }
             else
             {
-                return Ok(_ordermapper.CreateOrderDTOFromOrder(_orderService.CreateOrder(_ordermapper.CreateOrderFromOrderDTO(Ordereditems))));
+                return Ok(_ordermapper.CreateOrderDTOReturnFromOrder(result));
             }
         }
 

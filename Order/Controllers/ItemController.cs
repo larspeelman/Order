@@ -41,7 +41,7 @@ namespace Order_Api.Controllers
         [HttpGet("{id}", Name = "Get")]
         public ActionResult<ItemDTO_Return> GetSingleItem(int id)
         {
-            var result = _itemService.Getitem(id);
+            var result = _itemService.GetSingleItem(id);
             if (result == null)
             {
                 return BadRequest("Item Was not Found");
@@ -74,14 +74,14 @@ namespace Order_Api.Controllers
         [HttpPut("{id}")]
         public ActionResult<ItemDTO_Return> UpdateItem(int id, [FromBody] ItemDTO_Create newitem)
         {
-            var itemToCheck = _itemService.Getitem(id);
+            var itemToCheck = _itemService.GetSingleItem(id);
             if (itemToCheck == null)
             {
                 return BadRequest("item doesn't exist");
             }
             else
             {
-                var updatedItem = _itemService.Updateitem(_itemMapper.CreateItemFromitemDTOCreate(newitem));
+                var updatedItem = _itemService.UpdateItem(_itemMapper.CreateItemFromitemDTOCreate(newitem));
                 return _itemMapper.CreateitemDTOReturnFromitem(itemToCheck);
             }
         }

@@ -25,8 +25,8 @@ namespace Order_Domain.Orders
 
         public OrderClass CreateOrder(OrderClass orderedItems)
         {
-            var CustomerToCheck = _userService.CheckIfCustomerIsValid(orderedItems.CustomerID);
-            if (CustomerToCheck != true)
+            var CustomerToCheck = _userService.GetSingleUser(orderedItems.CustomerID);
+            if (CustomerToCheck != null)
             {
                 return null;
             }
@@ -44,7 +44,7 @@ namespace Order_Domain.Orders
             List<ItemGroup> newListOfitems = new List<ItemGroup>();
             foreach (var item in Ordereditems)
             {
-                var itemInDB = _itemService.Getitem(item.ItemId);
+                var itemInDB = _itemService.GetSingleItem(item.ItemId);
                 item.Price = itemInDB.Price;
                 newListOfitems.Add(item);
             }
@@ -55,7 +55,7 @@ namespace Order_Domain.Orders
 
             foreach (var item in itemGroup)
             {
-                var itemInDB = _itemService.Getitem(item.ItemId);
+                var itemInDB = _itemService.GetSingleItem(item.ItemId);
                 item.CalculateShippingDate(itemInDB);
             }
         }

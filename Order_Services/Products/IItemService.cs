@@ -10,8 +10,8 @@ namespace Order_Services.items
     {
         Item AddNewitemToDatabase(Item item);
         List<Item> GetAllitems();
-        Item Updateitem(Item itemToCheck);
-        Item Getitem(int id);
+        Item UpdateItem(Item itemToCheck);
+        Item GetSingleItem(int id);
         void UpdateStock(List<ItemGroup> Ordereditems);
     }
 }

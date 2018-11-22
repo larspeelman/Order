@@ -47,7 +47,7 @@ namespace Order
             services.AddCors();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IitemService, itemService>();
+            services.AddScoped<IitemService, ItemService>();
 
             services.AddSingleton<IUserMapper, UserMapper>();
             services.AddSingleton<IItemMapper, ItemMapper>();
@@ -61,7 +61,7 @@ namespace Order
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin", policy =>
-                    policy.RequireClaim(ClaimTypes.Role, "1", "2"));
+                    policy.RequireClaim(ClaimTypes.Role, "1"));
                 options.AddPolicy("Customer", policy =>
                     policy.RequireClaim(ClaimTypes.Role, "2"));
             });

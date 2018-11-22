@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Order_Services.items
 {
-    public class itemService : IitemService
+    public class ItemService : IitemService
     {
         private readonly OrderDbContext _context;
 
-        public itemService(OrderDbContext context)
+        public ItemService(OrderDbContext context)
         {
             _context = context;
         }
@@ -35,23 +35,20 @@ namespace Order_Services.items
                 
         }
 
-        public Item Updateitem(Item ItemToUpdate)
+        public Item UpdateItem(Item itemToUpdate)
         {
-            var item = new Item()
-            {
-                ItemID = ItemToUpdate.ItemID,
-            };
+            var item = _context.Items.Find(itemToUpdate.ItemID);
             _context.Attach(item);
-            item.Name = ItemToUpdate.Name;
-            item.Price = ItemToUpdate.Price;
-            item.Description = ItemToUpdate.Description;
-            item.Amount = ItemToUpdate.Amount;
+            item.Name = itemToUpdate.Name;
+            item.Price = itemToUpdate.Price;
+            item.Description = itemToUpdate.Description;
+            item.Amount = itemToUpdate.Amount;
             _context.SaveChanges();
 
             return item;
         }
 
-        public Item Getitem(int id)
+        public Item GetSingleItem(int id)
         {
             var result = _context.Items.SingleOrDefault(x => x.ItemID == id);
             if (result == null)
@@ -66,7 +63,7 @@ namespace Order_Services.items
         {
             foreach (var item in Ordereditems)
             {
-                var itemInDB = Getitem(item.ItemId);
+                var itemInDB = GetSingleItem(item.ItemId);
                 if (itemInDB.Amount <= 0)
                 {
                     itemInDB.Amount = 0;

@@ -29,17 +29,6 @@ namespace Order_Api.Controllers
             _userService = userService;
         }
 
-
-
-        // GET: api/Order
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-
-
         // POST: api/Order
         [Authorize (Policy =  "Customer")]
         [HttpPost]
@@ -56,17 +45,13 @@ namespace Order_Api.Controllers
             }
         }
 
-        // PUT: api/Order/5
-        [HttpPut("{id}")]
-        public void put([FromBody] List<ItemGroupDTO> itemsToOrder)
+        [Authorize (Policy = "Customer")]
+        [Route("api/order/customerID")]
+        [HttpGet]
+        public ActionResult<ReportDTO> CreateReportForCustomer(int customerID)
         {
-
+            return null;
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

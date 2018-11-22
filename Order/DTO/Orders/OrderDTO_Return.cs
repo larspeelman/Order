@@ -8,10 +8,10 @@ namespace Order_Api.DTO.Orders
 {
     public class OrderDTO_Return
     {
-        public string CustomerID { get; set; }
-        public List<ItemGroupDTO> ItemGroups { get; set; }
+        public int CustomerID { get; set; }
+        public List<ItemGroupDTO_Return> ItemGroups { get; set; }
         public decimal TotalPrice { get; set; }
-        public string OrderID { get; set; }
+        public int OrderID { get; set; }
         public DateTime OrderDate { get; set; }
 
     }

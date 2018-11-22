@@ -1,4 +1,5 @@
 ﻿using Order_Api.DTO;
+using Order_Api.DTO.Orders;
 using Order_Domain.Orders;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Order_Api.Helpers
     public class ItemGroupMapper : IItemGroupMapper
     {
 
-        public ItemGroupDTO CreateItemGroupDTOFromItemGroup(ItemGroup itemGroup)
+        public ItemGroupDTO_Return CreateItemGroupDTOReturnFromItemGroup(ItemGroup itemGroup)
         {
-            return new ItemGroupDTO
+            return new ItemGroupDTO_Return
             {
-                itemID = itemGroup.ItemId,
+                ItemID = itemGroup.ItemId,
                 Amount = itemGroup.Amount,
                 ShippingDate = itemGroup.ShippingDate
             };
@@ -24,7 +25,7 @@ namespace Order_Api.Helpers
         {
             return new ItemGroup
             {
-                ItemId = itemGroupDTO.itemID,
+                ItemId = itemGroupDTO.ItemID,
                 Amount = itemGroupDTO.Amount,
             };
         }
@@ -39,12 +40,12 @@ namespace Order_Api.Helpers
             return newListOfItemGroups;
         }
 
-        public List<ItemGroupDTO> CreateItemGroupDTOFromItemGroupList(List<ItemGroup> itemGroup)
+        public List<ItemGroupDTO_Return> CreateItemGroupDTOReturnFromItemGroupList(List<ItemGroup> itemGroup)
         {
-            List<ItemGroupDTO> newListOfItemGroups = new List<ItemGroupDTO>();
+            List<ItemGroupDTO_Return> newListOfItemGroups = new List<ItemGroupDTO_Return>();
             foreach (var item in itemGroup)
             {
-                newListOfItemGroups.Add(CreateItemGroupDTOFromItemGroup(item));
+                newListOfItemGroups.Add(CreateItemGroupDTOReturnFromItemGroup(item));
             }
             return newListOfItemGroups;
         }

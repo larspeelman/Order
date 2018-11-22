@@ -16,7 +16,12 @@ namespace Order_Domain.Orders
         private readonly IitemService _itemService;
         private readonly IUserService _userService;
 
-
+        public OrderService(OrderDbContext context, IitemService itemService, IUserService userService)
+        {
+            _context = context;
+            _itemService = itemService;
+            _userService = userService;
+        }
 
         public OrderClass CreateOrder(OrderClass orderedItems)
         {
@@ -27,8 +32,10 @@ namespace Order_Domain.Orders
             }
             AddPriceToItemGroup(orderedItems.ItemGroups);
             GetShippingDate(orderedItems.ItemGroups);
+            _context.Set<ItemGroup>().AddRange(orderedItems.ItemGroups);
             _context.Orders.Add(orderedItems);
             _itemService.UpdateStock(orderedItems.ItemGroups);
+            _context.SaveChanges();
             return orderedItems;
         }
 

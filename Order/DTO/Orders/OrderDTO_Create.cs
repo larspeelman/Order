@@ -7,9 +7,8 @@ namespace Order_Api.DTO
 {
     public class OrderDTO_Create
     {
-        public string CustomerID { get; set; }
+        public int CustomerID { get; set; }
         public List<ItemGroupDTO> ItemGroupDTO { get; set; }
-        public decimal TotalPrice { get; set; }
 
     }
 }

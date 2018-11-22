@@ -10,8 +10,8 @@ namespace Order_Api.Helpers
 {
     public interface IItemMapper
     {
-        ItemDTO_Return CreateitemDTOReturnFromitem(Items item);
-        Items CreateItemFromitemDTOCreate(ItemDTO_Create itemDTOCreate);
-        List<ItemDTO_Return> CreateListItemDTOReturnFromItemsList(List<Items> listOfItems);
+        ItemDTO_Return CreateitemDTOReturnFromitem(Item item);
+        Item CreateItemFromitemDTOCreate(ItemDTO_Create itemDTOCreate);
+        List<ItemDTO_Return> CreateListItemDTOReturnFromItemsList(List<Item> listOfItems);
     }
 }

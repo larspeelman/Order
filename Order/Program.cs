@@ -16,8 +16,6 @@ namespace Order
     {
         public static void Main(string[] args)
         {
-            InitUsers();
-            InitItems();
             CreateWebHostBuilder(args).Build().Run();
             
         }
@@ -27,32 +25,5 @@ namespace Order
                 .UseStartup<Startup>();
 
 
-        private static void InitUsers()
-        {
-            UserDB.DBUsers.Add(new User()
-            {
-                Firstname = "lars",
-                LastName = "peelman",
-                Email = "xxxx@hotmail.com",
-                Street = "test",
-                PostalCode = "2050",
-                Number ="53153",
-                PhoneNumber="22222",
-                RoleOfUser = RolesEnum.Role.Admin,
-                Password ="test123",
-            });
-        }
-
-        private static void InitItems()
-        {
-            itemDB.DBitems.Add(new Items()
-            {
-              Name = "iphone",
-              Description = "gsm",
-              Price = 200.00M,
-              Amount = 10,
-              ItemID = "1"
-            });
-        }
     }
 }

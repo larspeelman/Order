@@ -12,6 +12,6 @@ namespace Order_Api.DTO.Products
         public decimal Price { get; set; }
         public int Amount { get; set; }
         public int ID { get; set; }
-        public int ItemIsInStock { get; set; }
+        public string ItemIsInStock { get; set; }
     }
 }

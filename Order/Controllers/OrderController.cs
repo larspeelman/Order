@@ -41,7 +41,7 @@ namespace Order_Api.Controllers
 
 
         // POST: api/Order
-        [Authorize ( Roles = "Member")]
+        [Authorize (Policy =  "Customer")]
         [HttpPost]
         public ActionResult<OrderDTO_Return> CreateOrder([FromBody] OrderDTO_Create orderedItems)
         {

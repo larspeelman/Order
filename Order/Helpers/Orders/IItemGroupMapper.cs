@@ -1,4 +1,5 @@
 ﻿using Order_Api.DTO;
+using Order_Api.DTO.Orders;
 using Order_Domain.Orders;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ namespace Order_Api.Helpers
 {
     public interface IItemGroupMapper
     {
-        ItemGroupDTO CreateItemGroupDTOFromItemGroup(ItemGroup itemGroup);
+        ItemGroupDTO_Return CreateItemGroupDTOReturnFromItemGroup(ItemGroup itemGroup);
         ItemGroup CreateItemGroupFromItemGroupDTO(ItemGroupDTO itemGroupDTO);
         List<ItemGroup> CreateItemGroupFromItemGroupDTOList(List<ItemGroupDTO> itemGroupDTO);
-        List<ItemGroupDTO> CreateItemGroupDTOFromItemGroupList(List<ItemGroup> itemGroup);
+        List<ItemGroupDTO_Return> CreateItemGroupDTOReturnFromItemGroupList(List<ItemGroup> itemGroup);
     }
 }

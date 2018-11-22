@@ -21,6 +21,7 @@ using Order_Domain.items;
 using Order_Domain.Orders;
 using Microsoft.EntityFrameworkCore;
 using Order.Data;
+using System.Security.Claims;
 
 namespace Order
 {
@@ -49,13 +50,21 @@ namespace Order
             services.AddScoped<IitemService, itemService>();
 
             services.AddSingleton<IUserMapper, UserMapper>();
-            services.AddSingleton<IitemMapper, ItemMapper>();
+            services.AddSingleton<IItemMapper, ItemMapper>();
             services.AddSingleton<IItemGroupMapper, ItemGroupMapper>();
             services.AddSingleton<IOrderMapper, OrderMapper>();
 
             services.AddDbContext<OrderDbContext>(options =>
                 options
                 .UseSqlServer(Configuration.GetConnectionString("OrderDb")));
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin", policy =>
+                    policy.RequireClaim(ClaimTypes.Role, "1", "2"));
+                options.AddPolicy("Customer", policy =>
+                    policy.RequireClaim(ClaimTypes.Role, "2"));
+            });
 
         }
 
@@ -70,7 +79,7 @@ namespace Order
             {
                 app.UseHsts();
             }
-           
+
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -85,6 +94,10 @@ namespace Order
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
+            app.Run(async context =>
+            {
+                context.Response.Redirect("/swagger");
+            });
         }
     }
 }

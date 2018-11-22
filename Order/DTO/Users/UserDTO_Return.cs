@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace Order_Api.DTO
 {
-    public class UserDTOWithoutPassword
+    public class UserDTO_Return
     {
         public string Firstname { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public string Adress { get; set; }
+        public AdressDTO Adress { get; set; }
         public string PhoneNumber { get; set; }
-        public int ID { get; set; }
-        public RolesEnum RoleOfUser { get; set; }
+        public int RoleOfUserID { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Order_Api.DTO;
+using Order_Api.DTO.Users;
 using Order_Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -10,40 +11,48 @@ namespace Order_Api.Helpers
     public class UserMapper : IUserMapper
     {
 
-        public UserDTO CreateUserDTOFromCustomer(User user)
+        public UserDTO_Return CreateUserDTOReturnFromCustomer(User user)
         {
-            return new UserDTO
+            return new UserDTO_Return
             {
                 Firstname = user.Firstname,
+                RoleOfUserID = user.RoleOfUserID,
                 LastName = user.LastName,
-                Adress = CreateAdressDTO(user),
+                Adress = CreateAdressDTO(user.Address),
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber,
             };
         }
 
-        public User CreateCustomerFromCustomerDTO(UserDTO userDTO)
+        public User CreateCustomerFromCustomerDTOCreate(UserDTO_Create userDTO)
         {
             return new User
             {
                 Firstname = userDTO.Firstname,
+                Password = userDTO.Password,
                 LastName = userDTO.LastName,
-                Street = userDTO.Adress.StreetName,
-                Number = userDTO.Adress.Number,
-                PostalCode = userDTO.Adress.PostalCode,
+                Address = CreateAddressFromAddressDTO(userDTO.Adress),
                 Email = userDTO.Email,
-                PhoneNumber = userDTO.PhoneNumber,
             };
 
         }
 
-        private AdressDTO CreateAdressDTO (User user)
+        private AdressDTO CreateAdressDTO (Address address)
         {
             return new AdressDTO
             {
-                StreetName = user.Street,
-                PostalCode = user.PostalCode,
-                Number = user.Number,
+                StreetName = address.StreetName,
+                PostalCode = address.PostalCode,
+                Number = address.Number
+            };
+        }
+
+        private Address CreateAddressFromAddressDTO(AdressDTO address)
+        {
+            return new Address
+            {
+                StreetName = address.StreetName,
+                Number = address.Number,
+                PostalCode = address.PostalCode
             };
         }
     }

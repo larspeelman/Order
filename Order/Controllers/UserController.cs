@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Order_Api.DTO;
+using Order_Api.DTO.Users;
 using Order_Api.Exceptions;
 using Order_Api.Helpers;
 using Order_Services.Users;
@@ -31,38 +32,39 @@ namespace Order_Api.Controllers
 
 
         // GET: api/Customer
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpGet]
-        public IEnumerable<UserDTO> Get()
+        public IEnumerable<UserDTO_Return> Get()
         {
-            return _userservice.GetAllCustomers().Select(user => _userMapper.CreateUserDTOFromCustomer(user));
+            return _userservice.GetAllCustomers().Select(user => _userMapper.CreateUserDTOReturnFromCustomer(user));
         }
 
         // GET: api/Customer/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "Admin")]
         [HttpGet("{id}")]
-        public UserDTO Get(int id)
+        public UserDTO_Return GetSingleUser(int id)
         {
-            var checkUserId = _userservice.GetAllCustomers().SingleOrDefault(x => x.UserID == id.ToString());
+            var checkUserId = _userservice.GetAllCustomers().SingleOrDefault(x => x.UserID == id);
             if (checkUserId == null)
             {
                 throw new UserException("No user was found with this ID");
             }
-            return _userMapper.CreateUserDTOFromCustomer(checkUserId);
+            return _userMapper.CreateUserDTOReturnFromCustomer(checkUserId);
             
         }
 
         // POST: api/Customer
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult<UserDTO> CreateCustomer([FromBody] UserDTO customer)
+        public ActionResult<UserDTO_Return> CreateCustomer([FromBody] UserDTO_Create customer)
         {
-            if (customer != null)
+            var customerDTO = _userservice.CreateNewCustomer(_userMapper.CreateCustomerFromCustomerDTOCreate(customer));
+            if (customer == null)
             {
-                var customerDTO = _userservice.CreateNewCustomer(_userMapper.CreateCustomerFromCustomerDTO(customer));
-                return Ok(_userMapper.CreateUserDTOFromCustomer(customerDTO));
+                return BadRequest("Not all fields were filled in");
+                
             }
-            return BadRequest("Not all fields were filled in");
+            return Ok(_userMapper.CreateUserDTOReturnFromCustomer(customerDTO));
 
         }
 

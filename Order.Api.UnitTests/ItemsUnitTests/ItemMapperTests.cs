@@ -14,7 +14,7 @@ namespace Order.Api.UnitTests.ItemsUnitTests
         public void GivenCreateitemDTOReturnFromitem_WhenGivenAnItem_ThenCreateItemDTOReturn()
         {
             var stubMap = new ItemMapper();
-            var newItem = new Items
+            var newItem = new Item
             {
                 Amount = 5,
                 Description = "test",

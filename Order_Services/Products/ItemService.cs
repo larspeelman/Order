@@ -18,7 +18,7 @@ namespace Order_Services.items
             _context = context;
         }
 
-        public Items AddNewitemToDatabase(Items item)
+        public Item AddNewitemToDatabase(Item item)
         {
             if (item == null)
             {
@@ -29,15 +29,15 @@ namespace Order_Services.items
             return item;
         }
 
-        public List<Items> GetAllitems()
+        public List<Item> GetAllitems()
         {
             return _context.Items.Select(it => it).ToList();
                 
         }
 
-        public Items Updateitem(Items ItemToUpdate)
+        public Item Updateitem(Item ItemToUpdate)
         {
-            var item = new Items()
+            var item = new Item()
             {
                 ItemID = ItemToUpdate.ItemID,
             };
@@ -51,7 +51,7 @@ namespace Order_Services.items
             return item;
         }
 
-        public Items Getitem(int id)
+        public Item Getitem(int id)
         {
             var result = _context.Items.SingleOrDefault(x => x.ItemID == id);
             if (result == null)

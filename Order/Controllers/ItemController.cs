@@ -53,7 +53,7 @@ namespace Order_Api.Controllers
         }
 
         // POST: api/item
-        [Authorize (Roles = "Admin") ]
+        [Authorize (Policy = "Admin") ]
         [HttpPost]
         public ActionResult<ItemDTO_Return> AddNewitem([FromBody] ItemDTO_Create newitem)
         {

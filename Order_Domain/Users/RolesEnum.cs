@@ -6,8 +6,8 @@ namespace Order_Domain.Users
 {
     public enum RolesEnum
     {
-            Admin = 0,
-            Customer = 1,
+            Admin = 1,
+            Customer = 2,
     }
 
 }

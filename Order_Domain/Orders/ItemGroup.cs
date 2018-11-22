@@ -1,6 +1,7 @@
 ﻿using Order_Domain.items;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -12,24 +13,28 @@ namespace Order_Domain.Orders
 
 
         public int ItemId { get; set; }
-        public Items Item { get; set; }
-        public string OrderID { get; set; }
+        public Item Item { get; set; }
+        public int OrderID { get; set; }
         public int Amount { get; set; }
+        public DateTime ShippingDate { get; set; }
         public decimal Price { get; set; }
         public OrderClass Order { get; set; }
-        public DateTime ShippingDate { get; set; }
 
 
-        public DateTime CalculateShippingDate(Items itemInDB)
+        public ItemGroup()
+        {
+        }
+
+        public void CalculateShippingDate(Item itemInDB)
         {
 
             if (itemInDB.ItemInStock == 0 || itemInDB.Amount - Amount <= 0)
             {
-                return DateTime.Now.AddDays(7);
+                ShippingDate = DateTime.Now.AddDays(7);
             }
             else
             {
-                return DateTime.Now.AddDays(1);
+                ShippingDate = DateTime.Now.AddDays(1);
             }
         }
 

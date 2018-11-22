@@ -10,7 +10,7 @@ namespace Order_Api.Helpers
 {
     public class ItemMapper : IItemMapper
     {
-        public ItemDTO_Return CreateitemDTOReturnFromitem(Items item)
+        public ItemDTO_Return CreateitemDTOReturnFromitem(Item item)
         {
 
             return new ItemDTO_Return
@@ -20,23 +20,22 @@ namespace Order_Api.Helpers
                 Amount = item.Amount,
                 Price = item.Price,
                 ID = item.ItemID,
-                ItemIsInStock = Convert.ToInt32(item.ItemInStock)
+                ItemIsInStock = item.ItemInStock.ToString()
             };
         }
-        public Items CreateItemFromitemDTOCreate(ItemDTO_Create itemDTOCreate)
+        public Item CreateItemFromitemDTOCreate(ItemDTO_Create itemDTOCreate)
         {
-            return new Items
+            return new Item
             {
                 Amount = itemDTOCreate.Amount,
                 Description = itemDTOCreate.Description,
                 Name = itemDTOCreate.Name,
                 Price = itemDTOCreate.Price,
-                ItemID = itemDTOCreate.ID
 
             };
         }
 
-        public List<ItemDTO_Return> CreateListItemDTOReturnFromItemsList(List<Items> listOfItems)
+        public List<ItemDTO_Return> CreateListItemDTOReturnFromItemsList(List<Item> listOfItems)
             {
                 List<ItemDTO_Return> listOfItemDTO = new List<ItemDTO_Return>();
 

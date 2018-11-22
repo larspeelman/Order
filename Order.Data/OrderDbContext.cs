@@ -14,7 +14,7 @@ namespace Order.Data
         }
 
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<OrderClass> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,15 +39,17 @@ namespace Order.Data
             modelBuilder.Entity<User>()
                 .Property(p => p.Email).HasColumnName("User_Email");
             modelBuilder.Entity<User>()
-                .Property(p => p.Number).HasColumnName("User_Number");
-            modelBuilder.Entity<User>()
                 .Property(p => p.Password).HasColumnName("User_Password");
             modelBuilder.Entity<User>()
-                .Property(p => p.PostalCode).HasColumnName("User_Zip");
-            modelBuilder.Entity<User>()
-                .Property(p => p.Street).HasColumnName("User_Street");
-            modelBuilder.Entity<User>()
                 .Property(p => p.RoleOfUserID).HasColumnName("User_RoleID");
+
+            modelBuilder.Entity<User>()
+                .OwnsOne(cp => cp.Address, a =>
+                {
+                    a.Property(ad => ad.StreetName).HasColumnName("User_Street");
+                    a.Property(ad => ad.Number).HasColumnName("User_Number");
+                    a.Property(ad => ad.PostalCode).HasColumnName("User_Zip");
+                });
 
 
             modelBuilder.Entity<PhoneNumber>()
@@ -69,39 +71,40 @@ namespace Order.Data
             modelBuilder.Entity<PhoneNumber>()
                 .Property(p => p.UserID).HasColumnName("User_ID");
 
-            modelBuilder.Entity<Roles>()
+            modelBuilder.Entity<Role>()
                 .ToTable("Roles", "USR")
                 .HasKey(rol => rol.RolesId);
 
-            modelBuilder.Entity<Roles>()
+            modelBuilder.Entity<Role>()
                 .HasOne(ro => ro.User)
-                .WithOne()
+                .WithOne(x => x.Roles)
+                .HasForeignKey<User>(key => key.RoleOfUserID)
                 .IsRequired();
 
-            modelBuilder.Entity<Roles>()
+            modelBuilder.Entity<Role>()
                 .Property(p => p.RolesId).HasColumnName("User_RoleID");
-            modelBuilder.Entity<Roles>()
-                .Property(p => p.Role).HasColumnName("User_Role");
+            modelBuilder.Entity<Role>()
+                .Property(p => p.RoleName).HasColumnName("User_Role");
 
         }
 
         private static void LinkItemToTableItem(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .ToTable("Item", "IT")
                 .HasKey(key => key.ItemID);
 
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .Property(p => p.ItemID).HasColumnName("Item_ID");
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .Property(p => p.Name).HasColumnName("Item_Name");
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .Property(p => p.Price).HasColumnName("Item_Price");
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .Property(p => p.Amount).HasColumnName("Item_Amount");
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .Property(p => p.Description).HasColumnName("Item_Description");
-            modelBuilder.Entity<Items>()
+            modelBuilder.Entity<Item>()
                 .Property(p => p.ItemIsInStockID).HasColumnName("Item_InStock");
         }
 
@@ -154,10 +157,10 @@ namespace Order.Data
             modelBuilder.Entity<ItemGroup>()
                 .HasOne(it => it.Item)
                 .WithOne(m => m.ItemGroup)
-                .HasForeignKey<Items>(key => key.ItemID)
+                .HasForeignKey<ItemGroup>(key => key.ItemId)
                 .IsRequired();
 
-               
+
 
         }
     }

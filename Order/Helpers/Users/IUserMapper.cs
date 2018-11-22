@@ -1,4 +1,5 @@
 ﻿using Order_Api.DTO;
+using Order_Api.DTO.Users;
 using Order_Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace Order_Api.Helpers
 {
     public interface IUserMapper
     {
-        UserDTO CreateUserDTOFromCustomer(User user);
-        User CreateCustomerFromCustomerDTO(UserDTO userDTO);
+        UserDTO_Return CreateUserDTOReturnFromCustomer(User user);
+        User CreateCustomerFromCustomerDTOCreate(UserDTO_Create userDTO);
     }
 }

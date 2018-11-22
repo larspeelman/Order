@@ -4,6 +4,7 @@ using Order_Api.Exceptions;
 using Order_Domain.Users;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Order_Services.Users
 
         public async Task<User> Authenticate(string email, string password)
         {
-            var user = await Task.Run(() => _userRepository.GetAllCustomers().SingleOrDefault(x => x.Email == email && x.Password == password));
+            var user = await Task.Run(() => _context.Users.SingleOrDefault(x => x.Email == email && x.Password == password));
 
             if (user == null)
                 return null;
@@ -32,16 +33,21 @@ namespace Order_Services.Users
 
         public User CreateNewCustomer(User customerToCreate)
         {
-            var emailAlreadyInDB = _userRepository.GetAllCustomers().SingleOrDefault(x => x.Email == customerToCreate.Email);
+            var emailAlreadyInDB = _context.Users.SingleOrDefault(x => x.Email == customerToCreate.Email);
             if (emailAlreadyInDB != null)
             {
               
                 throw new UserException("Email is already in use");
             }
+            else if (customerToCreate == null)
+            {
+                return null;
+            }
             else
             {
-                customerToCreate.RoleOfUser = RolesEnum.Role.Customer;
-                _userRepository.AddCustomerToDB(customerToCreate);
+                customerToCreate.RoleOfUserID = 2;
+                _context.Users.Add(customerToCreate);
+                _context.SaveChanges();
                 return customerToCreate;
             }
         }
@@ -49,12 +55,22 @@ namespace Order_Services.Users
         public IEnumerable<User> GetAllCustomers()
         {
 
-            return _userRepository.GetAllCustomers();
+            return _context.Users.Select(x => x).ToList();
         }
 
-        public bool CheckIfCustomerIsValid(string id)
+        public User GetSingleUser(int id)
         {
-            var customerInDB = _userRepository.GetAllCustomers().SingleOrDefault(x => x.ID == id);
+            var result = _context.Users.SingleOrDefault(x => x.UserID == id);
+            if (result == null)
+            {
+                return null;
+            }
+            return result;
+        }
+
+        public bool CheckIfCustomerIsValid(int id)
+        {
+            var customerInDB = _context.Users.SingleOrDefault( x=> x.UserID == id);
             if (customerInDB == null)
             {
                 return false;
@@ -64,8 +80,6 @@ namespace Order_Services.Users
                 return true;
             }
         }
-
-
 
     }
 }

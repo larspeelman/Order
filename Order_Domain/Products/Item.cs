@@ -5,18 +5,35 @@ using System.Text;
 
 namespace Order_Domain.items
 {
-    public class Items
+    public class Item
     {
+
+        private  int itemIsInStockID;
+
+        public int Amount { get; set; }
         public string Name { get;  set; }
         public string Description { get;  set; }
         public decimal Price { get;  set; }
-        public int Amount { get;  set; }
         public int ItemID { get;  set; }
         public ItemGroup ItemGroup { get; set; }
-        public int ItemIsInStockID => CheckIfitemIsInStock();
         public ItemInStock ItemInStock => SetIdToStringForITemInStock();
 
+        public int ItemIsInStockID
+        {
+            get
+            {
+                return CheckIfitemIsInStock();
+            }
+            set
+            {
+                itemIsInStockID = value;
+            }
+        }
 
+        public Item()
+        {
+            ItemIsInStockID = CheckIfitemIsInStock();
+        }
 
         private int CheckIfitemIsInStock()
         {

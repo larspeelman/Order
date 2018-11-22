@@ -17,6 +17,9 @@ create table USR.Users
 	User_RoleID int not null,
 )
 
+alter table USR.Users
+add constraint userrole_fk foreign key (User_RoleID) references USR.Roles(User_RoleID)
+
 insert into USR.Users
 (
 	User_FirstName,

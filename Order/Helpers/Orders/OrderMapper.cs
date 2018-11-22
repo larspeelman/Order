@@ -23,7 +23,7 @@ namespace Order_Api.Helpers
             {
                 CustomerID = order.CustomerID,
                 TotalPrice = order.TotalPrice,
-                ItemGroups = _itemGroupMapper.CreateItemGroupDTOFromItemGroupList(order.ItemGroups),
+                ItemGroups = _itemGroupMapper.CreateItemGroupDTOReturnFromItemGroupList(order.ItemGroups),
                 OrderDate = order.OrderDate,
                 OrderID = order.OrderID
             };

@@ -8,10 +8,10 @@ namespace Order_Services.items
 {
     public interface IitemService
     {
-        Items AddNewitemToDatabase(Items item);
-        List<Items> GetAllitems();
-        Items Updateitem(Items itemToCheck);
-        Items Getitem(int id);
+        Item AddNewitemToDatabase(Item item);
+        List<Item> GetAllitems();
+        Item Updateitem(Item itemToCheck);
+        Item Getitem(int id);
         void UpdateStock(List<ItemGroup> Ordereditems);
     }
 }

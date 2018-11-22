@@ -9,5 +9,9 @@ namespace Order_Domain.Users
         public int UserID { get; set; }
         public string Number { get; set; }
         public User User { get; set; }
+
+        public PhoneNumber()
+        {
+        }
     }
 }

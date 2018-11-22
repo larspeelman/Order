@@ -17,41 +17,41 @@ namespace Order.IntegrationTests
         private readonly TestServer _server;
         private readonly HttpClient _client;
 
-        public itemIntegrationtests()
-        {
-            // Arrange
-            _server = new TestServer(new WebHostBuilder()
-                .UseStartup<Startup>());
+        //public itemIntegrationtests()
+        //{
+        //    // Arrange
+        //    _server = new TestServer(new WebHostBuilder()
+        //        .UseStartup<Startup>());
 
-            _client = _server.CreateClient();
-            _client.DefaultRequestHeaders.Accept.Clear();
-            _client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+        //    _client = _server.CreateClient();
+        //    _client.DefaultRequestHeaders.Accept.Clear();
+        //    _client.DefaultRequestHeaders.Accept.Add(
+        //        new MediaTypeWithQualityHeaderValue("application/json"));
 
-            itemDB.DBitems.Clear();
+        //    itemDB.DBitems.Clear();
             
 
-        }
+        //}
 
-        [Fact]
-        public async Task AddNewitem_WhengivenANewitem_ThenitemIsAddedToDatabase()
-        {
-            var itemone = (new Items()
-            {
-                Name = "iphone8",
-                Description = "gsm",
-                Price = 200.00M,
-                Amount = 100,
-                ItemID = "10"
-            });
-            itemDB.DBitems.Add(itemone);
+        //[Fact]
+        //public async Task AddNewitem_WhengivenANewitem_ThenitemIsAddedToDatabase()
+        //{
+        //    var itemone = (new Items()
+        //    {
+        //        Name = "iphone8",
+        //        Description = "gsm",
+        //        Price = 200.00M,
+        //        Amount = 100,
+        //        ItemID = "10"
+        //    });
+        //    itemDB.DBitems.Add(itemone);
 
-            var content = JsonConvert.SerializeObject(itemone);
-            var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
+        //    var content = JsonConvert.SerializeObject(itemone);
+        //    var stringContent = new StringContent(content, Encoding.UTF8, "application/json");
 
-            var response = await _client.PostAsync("/api/item", stringContent);
+        //    var response = await _client.PostAsync("/api/item", stringContent);
 
-            Assert.Collection(List, );
-        }
+        //    Assert.Collection(List, );
+        //}
     }
 }

@@ -55,8 +55,10 @@ namespace Order_Api.Helper
 
             var claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier,user.Email),
-                new Claim(ClaimTypes.Role, user.RoleOfUser.ToString()),
+                new Claim(ClaimTypes.NameIdentifier,user.Password),
+                new Claim(ClaimTypes.Role, _userService.GetSingleUser(user.UserID).RoleOfUserID.ToString())
             };
+
 
             var identity = new ClaimsIdentity(claims, Scheme.Name);
             var principal = new ClaimsPrincipal(identity);

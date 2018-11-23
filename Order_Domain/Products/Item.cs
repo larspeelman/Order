@@ -32,7 +32,6 @@ namespace Order_Domain.items
 
         public Item()
         {
-            ItemIsInStockID = CheckIfitemIsInStock();
         }
 
         private int CheckIfitemIsInStock()

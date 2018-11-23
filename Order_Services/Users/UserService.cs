@@ -68,18 +68,6 @@ namespace Order_Services.Users
             return result;
         }
 
-        public bool CheckIfCustomerIsValid(int id)
-        {
-            var customerInDB = _context.Users.SingleOrDefault( x=> x.UserID == id);
-            if (customerInDB == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
 
     }
 }

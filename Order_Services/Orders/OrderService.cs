@@ -26,7 +26,7 @@ namespace Order_Domain.Orders
         public OrderClass CreateOrder(OrderClass orderedItems)
         {
             var CustomerToCheck = _userService.GetSingleUser(orderedItems.CustomerID);
-            if (CustomerToCheck != null)
+            if (CustomerToCheck == null)
             {
                 return null;
             }
